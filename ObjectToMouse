@@ -1,0 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PointToGoAttachedToMouse : MonoBehaviour
+{
+
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private LayerMask Layer;
+ 
+    void Update()
+    {
+        Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, Layer))
+        {
+            transform.position = raycastHit.point;
+
+        }
+    }
+}
